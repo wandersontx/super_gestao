@@ -12,12 +12,6 @@ class SiteContatoSeeder extends Seeder
      */
     public function run()
     {
-        $site = new SiteContato();
-        $site->nome = 'Sistema Super Gestão';
-        $site->telefone = '(61) 9841-5810';
-        $site->email = 'contato@supergestao.com';
-        $site->motivo_contato = 2;
-        $site->mensagem = 'Seja bem-vindo ao sistema Super Gestão';
-        $site->save();
+        factory(SiteContato::class, 100)->create();
     }
 }
