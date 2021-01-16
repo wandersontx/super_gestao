@@ -2,15 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\model\SiteContato;
 use Illuminate\Http\Request;
 
 class ContatoController extends Controller
 {
-    public function contato(Request $request)
+
+    public function create()
     {
-        //dd($request->all());
-        //dd($request->only('nome','motivo_contato'));
-        dd($request->input('mensagem'));
         return view('site.contato');
+    }
+
+    public function save(Request $request)
+    {
+       $request->validate([
+           'nome' => 'min:3|max:40',
+           'email' => 'required',
+           'telefone' => 'required',
+           'motivo_contato' => 'required',
+           'mensagem' => 'required',
+       ]); 
+       SiteContato::create($request->all());        
     }
 }
