@@ -3,6 +3,7 @@
 @isset($frase)
 {{ $frase }}
 @endisset
+
 <form  action="{{ route('site.contato') }}" method="post">
     @csrf
     <input type="text" placeholder="Nome" name="nome" class="{{ $classe }}" value="{{ old('nome') }}">
@@ -11,7 +12,7 @@
     <br>
     <input type="text" placeholder="E-mail" name="email" class="{{ $classe }}" value="{{ old('email') }}">
     <br>
-    <select class="{{ $classe }}" name="motivo_contato">
+    <select class="{{ $classe }}" name="motivo_contatos_id">
         <option value="" selected>Qual o motivo do contato?</option>
         @foreach ($motivos_contato as $key => $value)
             <option value="{{ $value->id }}" {{ $value->id == old('motivo_contato') ? 'selected' : '' }}>{{ $value->motivo_contato }}</option>
