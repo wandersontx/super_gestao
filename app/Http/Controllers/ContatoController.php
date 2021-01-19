@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\model\MotivoContato;
 use App\model\SiteContato;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,8 @@ class ContatoController extends Controller
 
     public function create()
     {
-        return view('site.contato');
+        $listaMotivos = MotivoContato::all();
+        return view('site.contato', compact('listaMotivos'));
     }
 
     public function save(Request $request)
