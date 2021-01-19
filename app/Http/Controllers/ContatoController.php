@@ -17,13 +17,21 @@ class ContatoController extends Controller
 
     public function save(Request $request)
     {
-       $request->validate([
-           'nome' => 'min:3|max:40',
-           'email' => 'email',
-           'telefone' => 'required',
-           'motivo_contatos_id' => 'required',
-           'mensagem' => 'required',
-       ]); 
+    //Podemos também crair variaveis contendo os respectivos arrays e depois passar estes como parametros de validate
+       $request->validate(
+           [
+                'nome' => 'min:3|max:40',
+                'email' => 'email',
+                'telefone' => 'required',
+                'motivo_contatos_id' => 'required',
+                'mensagem' => 'required',
+           ],
+           [
+                'required' => 'O campo :attribute é obrigatório',
+                'email' => 'O campo :attribute deve ser um e-mail válido',
+                'min' => 'O campo :attribute deve ter no minimo :min caracteres',
+           ]
+        ); 
        SiteContato::create($request->all());   
        return redirect()->route('site.index');     
     }
