@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\model\User;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -11,9 +12,10 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('site.login', ['titulo' => 'Login']);
+        $error = $request->get('erro');
+        return view('site.login', ['titulo' => 'Login', 'erro' => $error]);
     }
 
     /**
@@ -21,9 +23,29 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function autenticar()
+    public function autenticar(Request $request)
     {
-        //
+        $regras = [
+            'usuario' => 'email',
+            'senha' => 'required',
+        ];
+
+        $feedback = [
+            'usuario.email' => 'O campo usuário é obrigatório',
+            'senha.required' => 'O campo senha é obrigatório',
+        ];
+
+        $request->validate($regras, $feedback);
+
+        $email = $request->input('usuario');
+        $senha = $request->input('senha');
+        $usuario = User::where(['email' => $email, 'password' => $senha])->get()->first();
+        
+        if($usuario) 
+            echo 'Usuario autenticado';        
+        else 
+           return redirect()->route('site.login', ['erro' => 1]);         
+        
     }
 
     /**
