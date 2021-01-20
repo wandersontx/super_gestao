@@ -41,10 +41,16 @@ class LoginController extends Controller
         $senha = $request->input('senha');
         $usuario = User::where(['email' => $email, 'password' => $senha])->get()->first();
         
-        if($usuario) 
-            echo 'Usuario autenticado';        
-        else 
-           return redirect()->route('site.login', ['erro' => 1]);         
+        if($usuario){
+            session_start();
+            $_SESSION['nome'] = $usuario->name;
+            $_SESSION['email'] = $usuario->email;
+            return redirect()->route('app.clientes');
+        }                   
+        else{
+            return redirect()->route('site.login', ['erro' => 1]);
+        } 
+                   
         
     }
 

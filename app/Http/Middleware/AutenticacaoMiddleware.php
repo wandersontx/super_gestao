@@ -15,11 +15,12 @@ class AutenticacaoMiddleware
      */
     public function handle($request, Closure $next, $metodoAutenticao, $perfil)
     {
-        echo 'Perfil recebido '. strtoupper($perfil).'<br>';
-        echo 'Parametro recebido '. strtoupper($metodoAutenticao).'<br>';
-        if(false)
+        session_start();
+        if (isset($_SESSION['email']) && !empty($_SESSION['email'])) {
             return $next($request);
-        else
-            return Response('Acesso negado! rota exige autenticação');
+        } else {
+            redirect()->route('site.login', ['erro' => 2]);
+        }
+
     }
 }
