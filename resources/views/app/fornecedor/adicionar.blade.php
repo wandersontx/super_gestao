@@ -19,19 +19,20 @@
             <div style="width: 30%; margin-left: auto; margin-right:auto;">
                 <form action="{{ route('app.fornecedor.adicionar') }}" method="post">
                     @csrf
-                    <input type="text" name="nome" id="" placeholder="Digite o nome" class="borda-preta">
+                    <input type="hidden" name="id" value="{{ $fornecedor->id ?? '' }}">
+                    <input type="text" name="nome" id="" placeholder="Digite o nome" class="borda-preta" value="{{ $fornecedor->nome ?? old('nome') }}">
                         @if ($errors->has('nome'))
                             <div class="invalid-feedback">{{ $errors->first('nome') }}</div>
                         @endif                        
-                    <input type="text" name="site" id="" placeholder="Digite o site" class="borda-preta">
+                    <input type="text" name="site" id="" placeholder="Digite o site" class="borda-preta" value="{{ $fornecedor->site ?? old('site') }}">
                          @if ($errors->has('site'))
                             <div class="invalid-feedback">{{ $errors->first('site') }}</div>
                         @endif   
-                    <input type="text" name="uf" id="" placeholder="Digite a unidade federativa" class="borda-preta" max="2">
+                    <input type="text" name="uf" id="" placeholder="Digite a unidade federativa" class="borda-preta" max="2" value="{{ $fornecedor->uf ?? old('uf') }}">
                          @if ($errors->has('uf'))
                             <div class="invalid-feedback">{{ $errors->first('uf') }}</div>
                         @endif   
-                    <input type="text" name="email" id="" placeholder="digite um e-mail valido" class="borda-preta">
+                    <input type="text" name="email" id="" placeholder="digite um e-mail valido" class="borda-preta" value="{{ $fornecedor->email ?? old('email') }}">
                          @if ($errors->has('email'))
                             <div class="invalid-feedback">{{ $errors->first('email') }}</div>
                         @endif   
