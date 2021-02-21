@@ -12,30 +12,32 @@ class FornecedorSeeder extends Seeder
      */
     public function run()
     {
-        $fornecedor = new Fornecedor();
-        $fornecedor->nome = 'Udemy';
-        $fornecedor->site = 'udemy.com';
-        $fornecedor->uf = 'rs';
-        $fornecedor->email = 'contato@udemy.com';
-        $fornecedor->save();
+        // $fornecedor = new Fornecedor();
+        // $fornecedor->nome = 'Udemy';
+        // $fornecedor->site = 'udemy.com';
+        // $fornecedor->uf = 'rs';
+        // $fornecedor->email = 'contato@udemy.com';
+        // $fornecedor->save();
 
         //Necessário declarar as colunas inseridas a variavel fillable do modelo
-        Fornecedor::create([
-            'nome'  => 'English Live',
-            'site'  => 'english.com',
-            'uf'    => 'go',
-            'email' => 'contato@english.com',
-        ]);
+        // Fornecedor::create([
+        //     'nome'  => 'English Live',
+        //     'site'  => 'english.com',
+        //     'uf'    => 'go',
+        //     'email' => 'contato@english.com',
+        // ]);
 
         //3ª forma de inserir registros. Não preeche as colunas
         //created_at e updated_at, por se tratar de inserção convencional
         //sem passar pelo tratamento do laravel. Menos indicada em relação as 
         //anteriores
-        DB::table('fornecedores')->insert([
-            'nome'  => 'youtube',
-            'site'  => 'youtube.com',
-            'uf'    => 'df',
-            'email' => 'contato@youtube.com',
-        ]);
+        // DB::table('fornecedores')->insert([
+        //     'nome'  => 'youtube',
+        //     'site'  => 'youtube.com',
+        //     'uf'    => 'df',
+        //     'email' => 'contato@youtube.com',
+        // ]);
+
+        factory(Fornecedor::class, 100)->create();
     }
 }

@@ -31,8 +31,8 @@ Route::middleware('autenticacao:padrao, visitante')->prefix('app')->group(functi
     Route::get('/fornecedor/editar/{id}','FornecedorController@editar')->name('app.fornecedor.editar');
     Route::post('/fornecedor/adicionar','FornecedorController@adicionar')->name('app.fornecedor.adicionar');
     Route::post('/fornecedor/listar','FornecedorController@listar')->name('app.fornecedor.listar');
-   
-    //Ao clicar no em "proxima pagina" na paginação e realizado um requisição do tipo get, por isso, esta sendo
+    Route::get('/fornecedor/excluir/{id}','FornecedorController@excluir')->name('app.fornecedor.excluir');
+     //Ao clicar no em "proxima pagina" na paginação e realizado um requisição do tipo get, por isso, esta sendo
     //acrescentada essa nota rota
     Route::get('/fornecedor/listar','FornecedorController@listar')->name('app.fornecedor.listar');
     Route::get('/produto', 'ProdutoController@index')->name('app.produto');

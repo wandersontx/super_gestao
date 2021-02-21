@@ -19,7 +19,7 @@ class FornecedorController extends Controller
                       ->where('uf','ilike', '%'.$request->input('uf').'%')
                       ->where('email','ilike', '%'.$request->input('email').'%')
                       ->orderBy('nome')
-                      ->paginate(2);
+                      ->paginate();
       return view('app.fornecedor.listar', ['fornecedores' => $fornecedores, 'request' => $request->all()]);
     }
 
@@ -60,6 +60,12 @@ class FornecedorController extends Controller
     {
       $fornecedor = Fornecedor::find($id);
       return view('app.fornecedor.adicionar', ['fornecedor' => $fornecedor]);
+    }
+
+    public function excluir($id)
+    {
+      $fornecedor = Fornecedor::find($id)->delete();
+      return redirect()->route('app.fornecedor.listar');
     }
 
 }
