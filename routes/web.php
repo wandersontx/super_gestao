@@ -35,7 +35,13 @@ Route::middleware('autenticacao:padrao, visitante')->prefix('app')->group(functi
      //Ao clicar no em "proxima pagina" na paginação e realizado um requisição do tipo get, por isso, esta sendo
     //acrescentada essa nota rota
     Route::get('/fornecedor/listar','FornecedorController@listar')->name('app.fornecedor.listar');
-    Route::get('/produto', 'ProdutoController@index')->name('app.produto');
+
+    //Como os metodos são padroes do framework (gerando pela tag --resource ou -r ao criar um controller)
+    //O framework ira gerá as rotas de acordo com o nome do metodo e ja nomeadas
+    //produto.index  ==> metodo index  --- http://127.0.0.1:8000/app/produto
+    //produto.create ==> metodo create --- http://127.0.0.1:8000/app/produto/create
+    Route::resource('produto', 'ProdutoController');
+
 });
 
 Route::fallback(function(){
