@@ -43,6 +43,7 @@
                  </table>  
                  {{ $fornecedores->appends($request)->links() }} 
                  {{-- appends -> formar de acomplar as requisições de paginação, filtros realizados na tela de consulta --}}           
+                 {{ 'Exibindo '.$fornecedores->count().' registro(s) de '.$fornecedores->total() }}
             </div>
         </div>  
     </div>  
