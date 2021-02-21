@@ -40,7 +40,9 @@
                             </tr>
                         @endforeach
                      </tbody>
-                 </table>              
+                 </table>  
+                 {{ $fornecedores->appends($request)->links() }} 
+                 {{-- appends -> formar de acomplar as requisições de paginação, filtros realizados na tela de consulta --}}           
             </div>
         </div>  
     </div>  
