@@ -209,3 +209,8 @@ button:hover {
 .pagination ul {
     list-style-type: none;
 }
+
+.texto-erro{
+    color: #dc3545;
+    font-size: 12px;
+}
