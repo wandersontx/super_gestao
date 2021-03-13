@@ -35,7 +35,7 @@
                                 <td>{{ $item->peso }}</td>
                                 <td>{{ $item->unidade_id }}</td>
                                 <td><a href="{{ route('produto.show', ['produto' => $item->id ]) }}">visualizar</a></td>
-                                <td><a href="#">Editar</a></td>
+                                <td><a href="{{ route('produto.edit', ['produto' => $item->id ]) }}">Editar</a></td>
                                 <td><a href="#">Excluir</a></td>
                             </tr>
                         @endforeach

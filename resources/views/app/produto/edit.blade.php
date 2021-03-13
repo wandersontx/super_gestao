@@ -4,7 +4,7 @@
 @section('contentApp')
     <div class="conteudo-pagina">
         <div class="titulo-pagina-2">
-            <p>Produto - Adicionar</p>
+            <p>Produto - Editar</p>
         </div>
         
         <div class="menu">
@@ -16,9 +16,10 @@
         
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left: auto; margin-right:auto;">
-                <form action="{{ route('produto.store') }}" method="post">
+                <form action="{{ route('produto.update', ['produto' => $produto->id ]) }}" method="post">
                     @csrf
-                   @component('app.produto._partials.fieldsForm', ['unidades' => $unidades])                       
+                    @method('PUT')
+                   @component('app.produto._partials.fieldsForm', ['unidades' => $unidades, 'produto' => $produto])                       
                    @endcomponent
                 </form>
             </div>
