@@ -42,6 +42,8 @@ Route::middleware('autenticacao:padrao, visitante')->prefix('app')->group(functi
     //produto.create ==> metodo create --- http://127.0.0.1:8000/app/produto/create
     Route::resource('produto', 'ProdutoController');
 
+    Route::resource('produtoDetalhe', 'ProdutoDetalheController');
+
 });
 
 Route::fallback(function(){
