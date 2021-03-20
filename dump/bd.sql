@@ -783,6 +783,11 @@ COPY public.log_acessos (id, log, created_at, updated_at) FROM stdin;
 2	IP 127.0.0.1 requisitou a rota /	2021-03-13 03:20:38	2021-03-13 03:20:38
 3	IP 127.0.0.1 requisitou a rota /	2021-03-13 12:51:19	2021-03-13 12:51:19
 4	IP 127.0.0.1 requisitou a rota /	2021-03-20 14:55:06	2021-03-20 14:55:06
+5	IP 127.0.0.1 requisitou a rota /	2021-03-20 16:55:23	2021-03-20 16:55:23
+6	IP 127.0.0.1 requisitou a rota /	2021-03-20 18:20:38	2021-03-20 18:20:38
+7	IP 127.0.0.1 requisitou a rota /	2021-03-20 18:37:40	2021-03-20 18:37:40
+8	IP 127.0.0.1 requisitou a rota /	2021-03-20 18:42:14	2021-03-20 18:42:14
+9	IP 127.0.0.1 requisitou a rota /	2021-03-20 18:52:20	2021-03-20 18:52:20
 \.
 
 
@@ -828,7 +833,13 @@ COPY public.motivo_contatos (id, motivo_contato, created_at, updated_at) FROM st
 --
 
 COPY public.produto_detalhes (id, produto_id, comprimento, largura, altura, created_at, updated_at, unidade_id) FROM stdin;
-1	4	255	115	45	2021-03-20 14:59:03	2021-03-20 15:41:07	1
+5	2	9	38	12	2021-03-20 17:17:16	2021-03-20 17:17:16	1
+12	3	52	9	16	2021-03-20 17:29:40	2021-03-20 17:29:40	1
+16	4	20	30	40	2021-03-20 17:49:39	2021-03-20 17:49:39	1
+17	5	40	65	72	2021-03-20 17:49:54	2021-03-20 17:49:54	1
+18	6	64	74	32	2021-03-20 17:50:09	2021-03-20 17:50:09	1
+19	7	69	46	20	2021-03-20 17:50:23	2021-03-20 17:50:23	1
+20	9	250	190	35	2021-03-20 17:50:38	2021-03-20 17:50:38	1
 \.
 
 
@@ -1199,7 +1210,7 @@ SELECT pg_catalog.setval('public.fornecedores_id_seq', 200, true);
 -- Name: log_acessos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wanderson
 --
 
-SELECT pg_catalog.setval('public.log_acessos_id_seq', 4, true);
+SELECT pg_catalog.setval('public.log_acessos_id_seq', 9, true);
 
 
 --
@@ -1220,7 +1231,7 @@ SELECT pg_catalog.setval('public.motivo_contatos_id_seq', 6, true);
 -- Name: produto_detalhes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wanderson
 --
 
-SELECT pg_catalog.setval('public.produto_detalhes_id_seq', 1, true);
+SELECT pg_catalog.setval('public.produto_detalhes_id_seq', 20, true);
 
 
 --
