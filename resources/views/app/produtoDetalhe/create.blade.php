@@ -17,7 +17,7 @@
             <div style="width: 30%; margin-left: auto; margin-right:auto;">
                 <form action="{{ route('produtoDetalhe.store') }}" method="post">
                     @csrf
-                   @component('app.produtoDetalhe._components.fieldsForm')                       
+                   @component('app.produtoDetalhe._components.fieldsForm',['unidades' => $unidades])                       
                    @endcomponent
                 </form>
             </div>
