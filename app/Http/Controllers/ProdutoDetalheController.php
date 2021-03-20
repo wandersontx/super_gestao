@@ -59,10 +59,10 @@ class ProdutoDetalheController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  App\model\ProdutoDetalhe $produtoDetalhe
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ProdutoDetalhe $produtoDetalhe)
     {
         //
     }
@@ -70,33 +70,48 @@ class ProdutoDetalheController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  App\model\ProdutoDetalhe $produtoDetalhe
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ProdutoDetalhe $produtoDetalhe)
     {
-        return view('app.produtoDetalhe.create');
+        $unidades = Unidade::all();
+        return view('app.produtoDetalhe.edit', ['unidades' => $unidades ,'produtoDetalhe' => $produtoDetalhe]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\model\ProdutoDetalhe $produtoDetalhe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ProdutoDetalhe $produtoDetalhe)
     {
-        //
+        $regras = [
+            'produto_id'  => 'exists:produtos,id',
+            'comprimento' => 'required',
+            'largura'     => 'required',
+            'altura'      => 'required',
+            'unidade_id'  => 'exists:unidades,id'
+        ];
+        $feedback = [
+            'required'          => 'O campo :attribute deve ser preenchido',
+            'unidade_id.exists' => 'O campo unidade deve existir na tabela unidades.',
+            'produto_id.exists' => 'O campo id do produto deve existir na tabela produtos.'
+        ];
+        $request->validate($regras, $feedback);
+        $produtoDetalhe->update($request->all());
+        return redirect()->route('produtoDetalhe.create');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  App\model\ProdutoDetalhe $produtoDetalhe
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ProdutoDetalhe $produtoDetalhe)
     {
         //
     }
