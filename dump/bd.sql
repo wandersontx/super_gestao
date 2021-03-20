@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.6 (Ubuntu 12.6-1.pgdg20.04+1)
--- Dumped by pg_dump version 12.6 (Ubuntu 12.6-1.pgdg20.04+1)
+-- Dumped from database version 12.6 (Ubuntu 12.6-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.6 (Ubuntu 12.6-0ubuntu0.20.04.1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -782,6 +782,7 @@ COPY public.log_acessos (id, log, created_at, updated_at) FROM stdin;
 1	IP 127.0.0.1 requisitou a rota /	2021-03-01 22:59:16	2021-03-01 22:59:16
 2	IP 127.0.0.1 requisitou a rota /	2021-03-13 03:20:38	2021-03-13 03:20:38
 3	IP 127.0.0.1 requisitou a rota /	2021-03-13 12:51:19	2021-03-13 12:51:19
+4	IP 127.0.0.1 requisitou a rota /	2021-03-20 14:55:06	2021-03-20 14:55:06
 \.
 
 
@@ -827,6 +828,7 @@ COPY public.motivo_contatos (id, motivo_contato, created_at, updated_at) FROM st
 --
 
 COPY public.produto_detalhes (id, produto_id, comprimento, largura, altura, created_at, updated_at, unidade_id) FROM stdin;
+1	4	255	115	45	2021-03-20 14:59:03	2021-03-20 15:41:07	1
 \.
 
 
@@ -1197,7 +1199,7 @@ SELECT pg_catalog.setval('public.fornecedores_id_seq', 200, true);
 -- Name: log_acessos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wanderson
 --
 
-SELECT pg_catalog.setval('public.log_acessos_id_seq', 3, true);
+SELECT pg_catalog.setval('public.log_acessos_id_seq', 4, true);
 
 
 --
@@ -1218,7 +1220,7 @@ SELECT pg_catalog.setval('public.motivo_contatos_id_seq', 6, true);
 -- Name: produto_detalhes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wanderson
 --
 
-SELECT pg_catalog.setval('public.produto_detalhes_id_seq', 1, false);
+SELECT pg_catalog.setval('public.produto_detalhes_id_seq', 1, true);
 
 
 --
