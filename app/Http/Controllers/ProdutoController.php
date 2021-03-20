@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\model\Item;
 use App\model\Produto;
 use App\model\ProdutoDetalhe;
 use App\model\Unidade;
@@ -16,9 +17,8 @@ class ProdutoController extends Controller
      */
     public function index(Request $request)
     {
-        $produtos = Produto::orderBy('id', 'asc')->paginate(10);
+        $produtos = Item::orderBy('id', 'asc')->paginate(10);
 
-        //dd($produtos);
 
         return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
     }
