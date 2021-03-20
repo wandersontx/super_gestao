@@ -18,13 +18,7 @@ class ProdutoController extends Controller
     {
         $produtos = Produto::orderBy('id', 'asc')->paginate(10);
 
-
-        foreach($produtos as $key => $produto) {
-            $produtoDetalhe = ProdutoDetalhe::where('produto_id', $produto->id)->first();
-            if(isset($produtoDetalhe) && !is_null($produtoDetalhe)) {
-                $produto->produtoDetalhe = (object) $produtoDetalhe->getAttributes();
-            }
-        }
+        //dd($produtos);
 
         return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
     }
