@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\model\Fornecedor;
 use App\model\Item;
 use App\model\Produto;
 use App\model\ProdutoDetalhe;
@@ -30,8 +31,9 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        $unidades = Unidade::all();       
-        return view('app.produto.create', compact('unidades'));
+        $unidades = Unidade::all(); 
+        $fornecedores = Fornecedor::all();        
+        return view('app.produto.create', compact('unidades','fornecedores'));
     }
 
     /**
@@ -46,13 +48,15 @@ class ProdutoController extends Controller
             'nome'       => 'min:3|max:40',
             'descricao'  => 'min:3|max:2000',
             'peso'       => 'required|integer',
-            'unidade_id' => 'exists:unidades,id'
+            'unidade_id' => 'exists:unidades,id',
+            'fornecedor_id' => 'exists:fornecedores,id'
         ];
         $feedback = [
             'required' => 'O campo :attribute deve ser preenchido',
             'min'      => 'O campo :attribute deve conter pelo menos :min caracteres',
             'max'      => 'O campo :attribute deve conter no máximo :max caracteres',
-            'exists'   => 'O campo unidade deve existir na tabela unidades.'
+            'exists'   => 'O campo unidade deve existir na tabela unidades.',
+            'fornecedor_id'   => 'O campo fornecedor deve existir na tabela fornecedores.'
         ];
         $request->validate($regras, $feedback);
         Produto::create($request->all());
@@ -78,30 +82,33 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-        $unidades = Unidade::all();  
-        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
+        $unidades = Unidade::all();
+        $fornecedores = Fornecedor::all();  
+        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades, 'fornecedores' => $fornecedores]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\model\Produto  $produto
+     * @param  \App\model\Item  $produto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, Item $produto)
     {
         $regras = [
             'nome'       => 'min:3|max:40',
             'descricao'  => 'min:3|max:2000',
             'peso'       => 'required|integer',
-            'unidade_id' => 'exists:unidades,id'
+            'unidade_id' => 'exists:unidades,id',
+            'fornecedor_id' => 'exists:fornecedores,id'
         ];
         $feedback = [
             'required' => 'O campo :attribute deve ser preenchido',
             'min'      => 'O campo :attribute deve conter pelo menos :min caracteres',
             'max'      => 'O campo :attribute deve conter no máximo :max caracteres',
-            'exists'   => 'O campo unidade deve existir na tabela unidades.'
+            'exists'   => 'O campo unidade deve existir na tabela unidades.',
+            'fornecedor_id'   => 'O campo fornecedor deve existir na tabela fornecedores.'
         ];
         $request->validate($regras, $feedback);        
         $produto->update($request->all());

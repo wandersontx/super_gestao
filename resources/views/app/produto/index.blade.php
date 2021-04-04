@@ -14,8 +14,8 @@
         </div>
         
         <div class="informacao-pagina">
-            <div style="width: 90%; margin-left: auto; margin-right:auto;">
-                 <table border="1" style="border: 1px solid black;">
+            <div  style="width: 90%; margin-left: auto; margin-right:auto;" >
+                 <table border="1" style="border: 1px solid black;" class="tableCenter">
                      <thead>
                          <tr>
                              <th>Nome</th>

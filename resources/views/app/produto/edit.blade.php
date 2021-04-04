@@ -19,7 +19,7 @@
                 <form action="{{ route('produto.update', ['produto' => $produto->id ]) }}" method="post">
                     @csrf
                     @method('PUT')
-                   @component('app.produto._partials.fieldsForm', ['unidades' => $unidades, 'produto' => $produto])                       
+                   @component('app.produto._partials.fieldsForm', ['unidades' => $unidades, 'produto' => $produto, 'fornecedores' => $fornecedores])                       
                    @endcomponent
                 </form>
             </div>

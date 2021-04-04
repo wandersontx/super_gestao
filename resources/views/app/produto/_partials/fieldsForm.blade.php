@@ -1,4 +1,13 @@
 
+    <select name="fornecedor_id" id="">
+        <option value="">-- Selecione um fornecedor --</option>
+        @foreach ($fornecedores as $item)
+            <option value="{{ $item->id  }}" {{ ($produto->fornecedor_id ?? old('fornecedor_id')) == $item->id ? 'selected' : '' }}>{{ $item->nome }}</option>
+        @endforeach    
+    </select>
+    @if ($errors->has('fornecedor_id'))
+        <div class="texto-erro">{{ $errors->first('fornecedor_id') }}</div>
+    @endif
     <input type="text" name="nome" id="" placeholder="Digite o nome" class="borda-preta" value="{{ old('nome') ?? $produto->nome ?? '' }}">
     @if ($errors->has('nome'))
         <div class="texto-erro">{{ $errors->first('nome') }}</div>
@@ -14,7 +23,7 @@
     <select name="unidade_id" id="">
         <option value="">-- Selecione uma opção --</option>
         @foreach ($unidades as $item)
-            <option value="{{ $item->id  }}" {{ $item->id == old('unidade_id') || $produto->unidade_id ? 'selected' : '' }}>{{ $item->descricao }}</option>
+            <option value="{{ $item->id  }}" {{ ($produto->unidade_id ?? $item->id == old('unidade_id')) == $item->id ? 'selected' : '' }}>{{ $item->descricao }}</option>
         @endforeach    
     </select>
     @if ($errors->has('unidade_id'))
