@@ -21,14 +21,12 @@
                              <th>Nome</th>
                              <th>#</th>
                              <th>#</th>
-                             <th>#</th>
                          </tr>
                      </thead>
                      <tbody>
                         @foreach ($clientes as $item)
                             <tr>
                                 <td>{{ $item->nome }}</td>
-                                <td><a href="{{ route('cliente.show', ['cliente' => $item->id ]) }}">visualizar</a></td>
                                 <td><a href="{{ route('cliente.edit', ['cliente' => $item->id ]) }}">Editar</a></td>
                                 <td>
                                     
