@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\model\Cliente;
 use App\model\Pedido;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        //
+        $clientes = Cliente::all()->sortBy('nome');
+        return view('app.pedido.create', compact('clientes'));
     }
 
     /**
@@ -36,7 +38,8 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Pedido::create($request->all());
+        return redirect()->route('pedido.index');
     }
 
     /**
@@ -58,7 +61,9 @@ class PedidoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pedido = Pedido::find($id);
+        $clientes = Cliente::all()->sortBy('nome');
+        return view ('app.pedido.edit', ['pedido' => $pedido, 'clientes' => $clientes]);
     }
 
     /**
@@ -70,7 +75,9 @@ class PedidoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pedido = Pedido::find($id);
+        $pedido->update($request->all());
+        return redirect()->route('pedido.index');
     }
 
     /**
@@ -81,6 +88,8 @@ class PedidoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pedido = Pedido::find($id);
+        $pedido->delete();
+        return redirect()->route('pedido.index');
     }
 }
