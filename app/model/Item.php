@@ -23,4 +23,8 @@ class Item extends Model
         */
         return $this->hasOne('App\model\ItemDetalhe', 'produto_id','id');
     }
+
+    public function pedidos(){
+        return $this->belongsToMany('App\model\Pedido', 'pedido_produtos','produto_id', 'pedido_id');
+    }
 }
