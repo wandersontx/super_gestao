@@ -102,11 +102,10 @@ class PedidoProdutoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\model\Pedido $pedido
-     * @param \App\model\Produto $produto 
+     * @param \App\model\PedidoProduto $pedidoProduto 
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pedido $pedido, Produto $produto)
+    public function destroy(PedidoProduto $pedidoProduto)
     {
       
         // print_r($pedido->getAttributes());
@@ -121,7 +120,13 @@ class PedidoProdutoController extends Controller
 
 
         // detach (delete pelo relacionamento)
-        $pedido->produtos()->detach($produto->id);
-        return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
+        // $pedido->produtos()->detach($produto->id);
+
+
+        // Removendo pelo ID da tabela intermediaria do relacionamento N x N
+        $pedido_id = $pedidoProduto->getAttribute('pedido_id');
+       // dd(  $pedidoProduto->getAttributes());
+        $pedidoProduto->delete();
+        return redirect()->route('pedido-produto.create', ['pedido' => $pedido_id]);
     }
 }
