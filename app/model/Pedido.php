@@ -16,7 +16,7 @@ class Pedido extends Model
       //belongsToMany -> um produto pertence a muitos produtos
 
       //nomes nao padronizados
-      return $this->belongsToMany('App\model\Item', 'pedido_produtos', 'pedido_id','produto_id');
+      return $this->belongsToMany('App\model\Item', 'pedido_produtos', 'pedido_id','produto_id')->withPivot('created_at'); //withPivot('created_at'); -> para acessar colunas da tabela intermediaria no relacionamento N X N
       /*
        Params
        1 > Modelo do relacionamento N x N em relação o modelo que estamos implementando. ou seja, Item em relação a Pedido
