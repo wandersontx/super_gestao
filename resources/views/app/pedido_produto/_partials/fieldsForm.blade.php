@@ -7,4 +7,8 @@
 @if ($errors->has('produto_id'))
 <div class="texto-erro">{{ $errors->first('produto_id') }}</div>
 @endif
+<input type="text" name="quantidade" id="" value="{{ old('quantidade') ?? ''}}" placeholder="quantidade" class="borda-preta">
+@if ($errors->has('quantidade'))
+    <div class="texto-erro">{{ $errors->first('quantidade') }}</div>
+@endif
 <button type="submit" class="borda-preta">Cadastrar</button>   
