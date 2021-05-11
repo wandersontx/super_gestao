@@ -41,14 +41,26 @@ class PedidoProdutoController extends Controller
      */
     public function store(Request $request, Pedido $pedido)
     {
-        $regras = ['produto_id' => 'required'];
+        $regras = ['produto_id' => 'required', 'quantidade' => 'required'];
         $feedback = ['required' => 'O campo produto é obrigatório'];
         $request->validate($regras, $feedback);
 
-        $pedidoProduto = new PedidoProduto();
-        $pedidoProduto->pedido_id = $pedido->id;
-        $pedidoProduto->produto_id = $request->input('produto_id');
-        $pedidoProduto->save();
+        //Formato de inserção tradicional
+        // $pedidoProduto = new PedidoProduto();
+        // $pedidoProduto->pedido_id = $pedido->id;
+        // $pedidoProduto->produto_id = $request->input('produto_id');
+        // $pedidoProduto->quantidade = $request->input('quantidade');
+        // $pedidoProduto->save();
+
+        // quando chamamos o metodo em forma de atributo (metodo que representa o relacionamento)
+        // o retorno da instrução será a relação de registros relacionados ( os registros dos relacionamentos entre produtos e pedidos)
+        //$pedido->produtos
+
+        //temos como retorno um objeto que mapeia o relacionamento.
+        $pedido->produtos()->attach(
+            $request->get('produto_id'),
+            ['quantidade' => $request->get('quantidade')]
+        );
 
         return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
     }
